@@ -2,5 +2,9 @@
 <resources>
 
     <string name="app_name">FlappyBirdClase</string>
-
+    <string name="facil"><b>Fácil</b></string>
+    <string name="medio"><b>Medio</b></string>
+    <string name="dificil"><b>Difícil</b></string>
+    <string name="song"><b>Sonido</b></string>
 </resources>
+

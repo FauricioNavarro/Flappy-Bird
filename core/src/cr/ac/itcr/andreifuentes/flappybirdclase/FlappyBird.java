@@ -31,10 +31,12 @@ public class FlappyBird extends ApplicationAdapter {
 	float pipeX[] = new float[numberOfPipes];
 	float pipeYOffset[] = new float[numberOfPipes];
 	float distance;
+	float distancia_seleccionada;
 	float pipeVelocity = 5;
 	Random random;
 	float maxLine;
 	float minLine;
+	int elevar;
 	int score;
 	int pipeActivo;
 	BitmapFont font;
@@ -44,6 +46,12 @@ public class FlappyBird extends ApplicationAdapter {
 	Circle birdCircle;
 	Rectangle[] topPipes;
 	Rectangle[] bottomPipes;
+
+	public FlappyBird(float gravity, float distancia_seleccionada, int elevar) {
+		this.gravity = gravity;
+		this.distancia_seleccionada = distancia_seleccionada;
+		this.elevar = elevar;
+	}
 
 	@Override
 	public void create () {
@@ -68,7 +76,7 @@ public class FlappyBird extends ApplicationAdapter {
 		velocity = 0;
 		gravity = 0.5f;
 		random = new Random();
-		distance = Gdx.graphics.getWidth() * 3/5;
+		distance = Gdx.graphics.getWidth() * distancia_seleccionada;
 		maxLine = Gdx.graphics.getHeight()* 3/4;
 		minLine = Gdx.graphics.getHeight()* 1/4;
 		score = 0;
@@ -176,7 +184,7 @@ public class FlappyBird extends ApplicationAdapter {
 			}
 
 			if (Gdx.input.justTouched()){
-				velocity = velocity - 30;
+				velocity = velocity - elevar;
 			}
 
 			birdState = birdState == 0 ? 1 : 0;
@@ -210,7 +218,6 @@ public class FlappyBird extends ApplicationAdapter {
 
 		batch.draw(birds[birdState], Gdx.graphics.getWidth() / 2 - birds[birdState].getWidth()/2,  birdY,  birds[birdState].getWidth() + birdSize, birds[birdState].getHeight() + birdSize);
 		font.draw(batch, Integer.toString(score), Gdx.graphics.getWidth()*1/8, Gdx.graphics.getHeight()*9/10);
-		birdSize += 1;
 		batch.end();
 
 	}
